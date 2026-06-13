@@ -16,7 +16,7 @@
       rel="stylesheet"
     />
     <script type="module" crossorigin src="/prime-force/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/prime-force/assets/index-DVWrWyxY.css">
+    <link rel="stylesheet" crossorigin href="/prime-force/assets/index-8aYuqKGc.css">
   </head>
   <body>
     <header class="header">
@@ -50,25 +50,64 @@
       
       
       
-      
+      <div class="modal-overlay is-open" id="order-modal">
+  <div class="modal">
+    <button class="modal-close-btn" type="button" data-modal-close>
+      <svg class="modal-close-icon" width="24" height="24">
+        <use href="/prime-force/assets/sprite-B0IVO1z0.svg#icon-close"></use>
+      </svg>
+    </button>
+    <h3 class="modal-title bold">Залишіть заявку на знайомство</h3>
+    <form>
+      <div class="input-group">
+        <label for="username-basic" class="modal-label regular">Ім’я*</label>
+        <div class="input-container">
+          <input
+            type="text"
+            name="Name"
+            id="username-basic"
+            class="modal-input"
+            placeholder="Андрій"
+          />
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="phone-basic" class="modal-label regular">Телефон*</label>
+        <div class="input-container">
+          <input
+            type="tel"
+            name="Phone"
+            id="phone-basic"
+            class="modal-input"
+            placeholder="380955559922"
+          />
+        </div>
+      </div>
+      <div class="input-group-row">
+        <div class="input-group">
+          <label for="comment-basic" class="modal-label regular"
+            >Коментар</label
+          >
+          <div class="input-container">
+            <textarea
+              id="comment-basic"
+              name="comment"
+              rows="5"
+              cols="30"
+              class="modal-input"
+              placeholder="Напишіть ваш коментар"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="modal-submit-btn regular">Надіслати</button>
+    </form>
+  </div>
+</div>
+
     </main>
 
-    <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
-  </div>
-</footer>
-
+    
 
   </body>
 </html>
