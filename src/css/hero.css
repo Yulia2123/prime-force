@@ -95,3 +95,28 @@ background: #EEE9E3;
   margin-bottom: 171px;
 }
 }
+@media only screen and (min-width: 1440px) {
+.hero-page {
+  max-width: 1440px;
+  max-height: 900px;
+  
+}
+.hero-contant {
+  margin-right: 690px;
+  padding-top: 128px;
+  padding-bottom: 64px;
+  max-width: 622px;
+  min-height: 359px;
+  }
+.hero-title {
+  font-size: 56px;
+}
+.hero-description {
+  font-size: 18px;
+}
+.hero-navigation {
+  margin-bottom: 349px;
+  width: 189px;
+  height: 48px;
+}
+}
