@@ -50,7 +50,7 @@
     justify-content: center;
     align-content: center;
   }
-  .feedback-comment{
+  .feedback-comment {
     width: 336px;
   }
   .feedback-author {
@@ -59,7 +59,7 @@
 }
 /* Styles for Desktop devices */
 @media only screen and (min-width: 1400px) {
-    .feedback-comment{
+  .feedback-comment {
     width: 640px;
   }
   .feedback-author {
