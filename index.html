@@ -20,10 +20,10 @@
       href="node_modules/css-star-rating/css/star-rating.css"
     />
     <script type="module" crossorigin src="/prime-force/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/prime-force/assets/rolldown-runtime-BHe-jwch.js">
-    <link rel="modulepreload" crossorigin href="/prime-force/assets/vendor-B2V43H18.js">
+    <link rel="modulepreload" crossorigin href="/prime-force/assets/rolldown-runtime-aKtaBQYM.js">
+    <link rel="modulepreload" crossorigin href="/prime-force/assets/vendor-8QKe4xf-.js">
     <link rel="stylesheet" crossorigin href="/prime-force/assets/vendor-c22xJ97i.css">
-    <link rel="stylesheet" crossorigin href="/prime-force/assets/index-DMl5gnIJ.css">
+    <link rel="stylesheet" crossorigin href="/prime-force/assets/index-K3_ZZRMi.css">
   </head>
   <body>
     <header id="header" class="section-header">
@@ -745,7 +745,7 @@
   </div>
 </div>
 
-      <div class="modal-overlay" id="order-modal">
+      <div class="modal-overlay is-open" id="order-modal">
   <div class="modal">
     <button class="modal-close-btn" type="button" data-modal-close>
       <svg class="modal-close-icon" width="24" height="24">
@@ -756,25 +756,27 @@
     <form>
       <div class="input-group">
         <label for="username-basic" class="modal-label regular">Ім’я*</label>
-        <div class="input-container error">
+        <div class="input-container">
           <input
             type="text"
-            name="Name"
+            name="name"
             id="username-basic"
             class="modal-input"
             placeholder="Андрій"
+            required
           />
         </div>
       </div>
       <div class="input-group">
         <label for="phone-basic" class="modal-label regular">Телефон*</label>
-        <div class="input-container error">
+        <div class="input-container">
           <input
             type="tel"
-            name="Phone"
+            name="phone"
             id="phone-basic"
             class="modal-input"
             placeholder="380955559922"
+            required
           />
         </div>
       </div>
@@ -783,7 +785,7 @@
           <label for="comment-basic" class="modal-label regular"
             >Коментар</label
           >
-          <div class="input-container textarea-container error">
+          <div class="input-container textarea-container">
             <textarea
               id="comment-basic"
               name="comment"
