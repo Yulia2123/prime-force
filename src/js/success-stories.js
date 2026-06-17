@@ -3,6 +3,11 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
+import axios from 'axios';
+
+const BASE_URL = 'https://paw-hut.b.goit.study';
 
 async function loadFeedbacks() {
   const container = document.querySelector('.js-feedback-container');
@@ -10,15 +15,22 @@ async function loadFeedbacks() {
     console.warn("Container is not find");
     return;
   }
-  
   try {
-    const response = await fetch('/api/feedbacks');
-    if (!response.ok) {
-      throw new Error('Помилка завантаження даних');}
-
-    const data = await response.json();
-    
-    const feedbacksList = data.feedbacks;
+    const response = await axios.get(BASE_URL, {
+    params: {
+page: CURRENT_PAGE,
+limit: 10,
+    }
+  });
+    if (response.status !== 200) {
+      iziToast.error({
+        title: 'Error',
+        message: 'Не владося завантажити данні',
+        position: 'topCenter'
+    });
+  return;
+  }
+    const feedbacksList = response.data.feedbacks;
 
     container.innerHTML = '';
 
@@ -26,33 +38,36 @@ async function loadFeedbacks() {
       container.innerHTML = '<p class="error">Отримано менше 3-х відгуків.</p>';
       return;
     }
+    //  feedbacksList.forEach(item => {
+    //   const card = document.createElement('div');
+    //   card.className = 'feedback-card';
 
-     feedbacksList.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'feedback-card';
+    //   const numericRate = Math.round(parseFloat(item.rate)) || 5;
 
-      const numericRate = Math.round(parseFloat(item.rate)) || 5;
+    //   card.innerHTML = `
+    //     <div class="feedback-header">
+    //       <span class="feedback-author">${item.author}</span>
+    //       <span class="feedback-rating" title="Оцінка: ${item.rate}">
+    //         ${'★'.repeat(numericRate)}${'☆'.repeat(5 - numericRate)}
+    //       </span>
+    //     </div>
+    //     <p class="feedback-text">${item.description}</p>
+    //   `;
 
-      card.innerHTML = `
-        <div class="feedback-header">
-          <span class="feedback-author">${item.author}</span>
-          <span class="feedback-rating" title="Оцінка: ${item.rate}">
-            ${'★'.repeat(numericRate)}${'☆'.repeat(5 - numericRate)}
-          </span>
-        </div>
-        <p class="feedback-text">${item.description}</p>
-      `;
-
-      container.appendChild(card);
-    });
-
+    //   container.appendChild(card);
+    // });
   } catch (error) {
     console.error(error);
-    container.innerHTML = '<p class="error">Не вдалося завантажити відгуки.</p>';
+    iziToast.error({
+      title: 'Error',
+      message: 'Не владося завантажити данні',
+      position: 'topCenter'
+    });
   }
 }
 
 document.addEventListener('DOMContentLoaded', loadFeedbacks);
+loadFeedbacks();
 //
 
 
