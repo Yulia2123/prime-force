@@ -9,30 +9,30 @@ import axios from 'axios';
 
 const BASE_URL = 'https://paw-hut.b.goit.study';
 
+const container = document.querySelector('.js-feedback-container');
+
+const axiosInstance = axios.create({
+    baseURL: 'https://paw-hut.b.goit.study',
+});
+
 async function loadFeedbacks() {
-  const container = document.querySelector('.js-feedback-container');
-  if (!container) {
+    if (!container) {
     console.warn("Container is not find");
     return;
   }
   try {
-    const response = await axios.get(BASE_URL, {
-    params: {
-page: CURRENT_PAGE,
-limit: 10,
-    }
-  });
+    const response = await axiosInstance.get('/api/feedbacks');
     if (response.status !== 200) {
       iziToast.error({
         title: 'Error',
         message: 'Не владося завантажити данні',
         position: 'topCenter'
     });
-  return;
-  }
+    return;
+    }
     const feedbacksList = response.data.feedbacks;
 
-    container.innerHTML = '';
+    // container.innerHTML = '';
 
     if (!feedbacksList || feedbacksList.length < 3) {
       container.innerHTML = '<p class="error">Отримано менше 3-х відгуків.</p>';
@@ -67,7 +67,7 @@ limit: 10,
 }
 
 document.addEventListener('DOMContentLoaded', loadFeedbacks);
-loadFeedbacks();
+
 //
 
 
