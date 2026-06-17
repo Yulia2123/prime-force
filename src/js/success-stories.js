@@ -4,6 +4,58 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+async function loadFeedbacks() {
+  const container = document.querySelector('.js-feedback-container');
+  if (!container) {
+    console.warn("Container is not find");
+    return;
+  }
+  
+  try {
+    const response = await fetch('/api/feedbacks');
+    if (!response.ok) {
+      throw new Error('Помилка завантаження даних');}
+
+    const data = await response.json();
+    
+    const feedbacksList = data.feedbacks;
+
+    container.innerHTML = '';
+
+    if (!feedbacksList || feedbacksList.length < 3) {
+      container.innerHTML = '<p class="error">Отримано менше 3-х відгуків.</p>';
+      return;
+    }
+
+     feedbacksList.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'feedback-card';
+
+      const numericRate = Math.round(parseFloat(item.rate)) || 5;
+
+      card.innerHTML = `
+        <div class="feedback-header">
+          <span class="feedback-author">${item.author}</span>
+          <span class="feedback-rating" title="Оцінка: ${item.rate}">
+            ${'★'.repeat(numericRate)}${'☆'.repeat(5 - numericRate)}
+          </span>
+        </div>
+        <p class="feedback-text">${item.description}</p>
+      `;
+
+      container.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = '<p class="error">Не вдалося завантажити відгуки.</p>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadFeedbacks);
+//
+
+
 const swiperFeedback = new Swiper('.swiper', {
   modules: [Navigation, Pagination],
   direction: 'horizontal',
