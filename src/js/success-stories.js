@@ -15,13 +15,17 @@ const axiosInstance = axios.create({
     baseURL: 'https://paw-hut.b.goit.study',
 });
 
-async function loadFeedbacks() {
+async function loadFeedbacks(page) {
     if (!container) {
-    console.warn("Container is not find");
+    console.warn("Контейнер не знайдено");
     return;
   }
+  const params = {
+    limit: PER_PAGE,
+    page: page,
+  }
   try {
-    const response = await axiosInstance.get('/api/feedbacks');
+    const response = await axiosInstance.get('/api/feedbacks', {params});
     if (response.status !== 200) {
       iziToast.error({
         title: 'Error',
@@ -31,13 +35,14 @@ async function loadFeedbacks() {
     return;
     }
     const feedbacksList = response.data.feedbacks;
-
-    // container.innerHTML = '';
-
-    if (!feedbacksList || feedbacksList.length < 3) {
-      container.innerHTML = '<p class="error">Отримано менше 3-х відгуків.</p>';
-      return;
-    }
+    TOTAL_PAGES = response.data.total;
+    const markup = createSlides(feedbacksList);
+    renderSlides(markup);
+  
+    // if (!feedbacksList || feedbacksList.length < 3) {
+    //   container.innerHTML = '<p class="error">Отримано менше 3-х відгуків.</p>';
+    //   return;
+    // }
     //  feedbacksList.forEach(item => {
     //   const card = document.createElement('div');
     //   card.className = 'feedback-card';
@@ -60,13 +65,13 @@ async function loadFeedbacks() {
     console.error(error);
     iziToast.error({
       title: 'Error',
-      message: 'Не владося завантажити данні',
+      message: 'Не владося завантажити дані',
       position: 'topCenter'
     });
   }
 }
 
-document.addEventListener('DOMContentLoaded', loadFeedbacks);
+document.addEventListener('DOMContentLoaded', loadFeedbacks(CURRENT_PAGE));
 
 //
 
