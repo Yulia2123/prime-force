@@ -26,3 +26,5 @@ const instance = basicLightbox.create(`
 document.querySelector('.open-modal').addEventListener('click', () => {
   instance.show();
 });
+
+
