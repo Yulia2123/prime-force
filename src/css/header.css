@@ -20,6 +20,7 @@ main {
   position: fixed;
 width: 100%;
 z-index: 9999;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 .header-nav {
   display: flex;

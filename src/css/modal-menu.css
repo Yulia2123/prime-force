@@ -1,5 +1,9 @@
 /* styles for mobile-menu */
 
+body.modal-open{
+    overflow: hidden;
+    height: 100vh;
+}
 
 .mobile-menu {
     position: fixed;
